@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  border: 2px solid black;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  flex: 5;
+  border: 2px solid red;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  width: 600px;
+  border: 2px solid green;
+}
+
+.container .screen {
+  height: 100px;
+  border: 2px solid orangered;
+}
+
+.container .input {
+  height: 50px;
+  border: 2px solid red;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex: 1;
+  border: 2px solid black;
+}
+
+.buttonsContainer .leftSide,
+.buttonsContainer .rightSide {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.buttonsContainer .leftSide {
+  border: 2px solid black;
+}
+
+.buttonsContainer .rightSide {
+  border: 2px solid blue;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  border: 2px solid blueviolet;
+}
+
+.footer {
+  border: 2px solid blue;
+}
