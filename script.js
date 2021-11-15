@@ -106,7 +106,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 
 let numberEventHandler = function (e) {
-  if (screen.textContent == '+') {
+  if (screen.textContent == '+' || screen.textContent == '-' || screen.textContent == '*' || screen.textContent == '/') {
     screen.textContent = '';
   }
 
