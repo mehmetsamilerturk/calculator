@@ -30,6 +30,9 @@ body {
 
 .container .screen {
   height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 2px solid orangered;
 }
 
@@ -63,6 +66,17 @@ body {
   display: flex;
   flex: 1;
   border: 2px solid blueviolet;
+}
+
+.block {
+  border: 1px solid black;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .footer {
