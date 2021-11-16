@@ -28,7 +28,11 @@ function operate(operator, x, y) {
     case '*':
       return multiply(x, y);
     case '/':
-      return divide(x, y);
+      if (y === 0) {
+        return "we don't do that here";
+      } else {
+        return divide(x, y);
+      }
     default:
       return 'invalid';
   }
@@ -98,39 +102,82 @@ const numbers = [blocks[0], blocks[1], blocks[2], blocks[3], blocks[4], blocks[5
   , blocks[10]
 ];
 
-const operators = [blocks[12], blocks[15], blocks[18], blocks[21]];
+const operators = [blocks[12], blocks[15], blocks[18], blocks[21], blocks[23]];
 
-let num = 0;
+const dot = blocks[9].textContent;
+const clear = blocks[14].textContent;
+
 let op = '';
-let firstNumber = 0;
-let secondNumber = 0;
+let firstNumber = '';
+let secondNumber = '';
+let displayValue = '';
+let secondOp = '';
+let calcResult = '';
 
 let numberEventHandler = function (e) {
-  if (screen.textContent == '+' || screen.textContent == '-' || screen.textContent == '*' || screen.textContent == '/') {
-    screen.textContent = '';
+  /*
+  if ((screen.textContent == '+' || screen.textContent == '-' || screen.textContent == '*' || screen.textContent == '/')
+    && (firstNumber === calcResult)) {
+    console.log('inside');
+    secondOp = screen.textContent;
   }
+  */
+  operators.forEach((operator) => {
+    if (operator.classList.contains('operatorClicked')) {
+      operator.classList.remove('operatorClicked');
+    }
+  });
 
-  screen.textContent += this.textContent;
-  num = +screen.textContent;
+  if (op === '') {
+    displayValue += this.textContent;
+    firstNumber = displayValue;
+    screen.textContent = displayValue;
+  } else {
+    if (displayValue === firstNumber) {
+      displayValue = this.textContent;
+      screen.textContent = displayValue;
+    } else {
+      displayValue += this.textContent;
+      secondNumber = displayValue;
+      screen.textContent = displayValue;
+    }
+  }
 }
 
 let operatorEventHandler = function (e) {
-  firstNumber = num;
-  screen.textContent = this.textContent;
-  op = screen.textContent;
-}
-
-let equalsEventHandler = function (e) {
-  secondNumber = num;
-  screen.textContent = operate(op, firstNumber, secondNumber);
+  if ((this.textContent !== '=') && (op !== '' && secondOp === '')) {
+    this.classList.add('operatorClicked');
+    secondOp = op;
+    secondNumber = displayValue;
+    calcResult = operate(secondOp, +firstNumber, +secondNumber);
+    displayValue = calcResult;
+    screen.textContent = displayValue;
+    firstNumber = displayValue;
+    calcResult = '';
+  } else if ((this.textContent !== '=') && (op !== '' && secondOp !== '')) {
+    this.classList.add('operatorClicked');
+    secondOp = this.textContent;
+    secondNumber = displayValue;
+    calcResult = operate(op, +firstNumber, +secondNumber);
+    displayValue = calcResult;
+    screen.textContent = displayValue;
+    firstNumber = displayValue;
+    calcResult = '';
+  } else if (this.textContent !== '=') {
+    op = this.textContent;
+    this.classList.add('operatorClicked');
+  } else {
+    displayValue = operate(op, +firstNumber, +secondNumber);
+    screen.textContent = displayValue;
+  }
 }
 
 numbers.forEach((number) => {
+  number.classList.add('operand');
   number.addEventListener('click', numberEventHandler, false);
 });
 
 operators.forEach((operator) => {
+  operator.classList.add('operator');
   operator.addEventListener('click', operatorEventHandler, false);
 });
-
-blocks[23].addEventListener('click', equalsEventHandler);

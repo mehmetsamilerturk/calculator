@@ -62,6 +62,10 @@ body {
   border: 2px solid blue;
 }
 
+.operatorClicked {
+  background-color: red;
+}
+
 .row {
   display: flex;
   flex: 1;
