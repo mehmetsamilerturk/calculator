@@ -140,18 +140,18 @@ let numberEventHandler = function (e) {
 let operatorEventHandler = function (e) {
   if ((this.textContent !== '=') && (op !== '' && secondOp === '')) {
     this.classList.add('operatorClicked');
-    secondOp = op;
+    secondOp = this.textContent;
     secondNumber = displayValue;
-    calcResult = operate(secondOp, +firstNumber, +secondNumber);
+    calcResult = operate(op, +firstNumber, +secondNumber);
     displayValue = calcResult;
     screen.textContent = displayValue;
     firstNumber = displayValue;
     calcResult = '';
   } else if ((this.textContent !== '=') && (op !== '' && secondOp !== '')) {
     this.classList.add('operatorClicked');
-    secondOp = this.textContent;
     secondNumber = displayValue;
-    calcResult = operate(op, +firstNumber, +secondNumber);
+    calcResult = operate(secondOp, +firstNumber, +secondNumber);
+    secondOp = this.textContent;
     displayValue = calcResult;
     screen.textContent = displayValue;
     firstNumber = displayValue;
