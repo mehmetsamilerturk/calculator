@@ -115,13 +115,6 @@ let secondOp = '';
 let calcResult = '';
 
 let numberEventHandler = function (e) {
-  /*
-  if ((screen.textContent == '+' || screen.textContent == '-' || screen.textContent == '*' || screen.textContent == '/')
-    && (firstNumber === calcResult)) {
-    console.log('inside');
-    secondOp = screen.textContent;
-  }
-  */
   operators.forEach((operator) => {
     if (operator.classList.contains('operatorClicked')) {
       operator.classList.remove('operatorClicked');
