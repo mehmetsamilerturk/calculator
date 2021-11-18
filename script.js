@@ -102,10 +102,7 @@ const numbers = [blocks[0], blocks[1], blocks[2], blocks[3], blocks[4], blocks[5
   , blocks[10]
 ];
 
-const operators = [blocks[12], blocks[15], blocks[18], blocks[21], blocks[23]];
-
-const dot = blocks[9].textContent;
-const clear = blocks[14].textContent;
+const operators = [blocks[12], blocks[14], blocks[15], blocks[18], blocks[21], blocks[23]];
 
 let op = '';
 let firstNumber = '';
@@ -138,59 +135,69 @@ let numberEventHandler = function (e) {
 }
 
 let operatorEventHandler = function (e) {
-  if ((this.textContent !== '=') && (op !== '' && secondOp === '')) {
-    this.classList.add('operatorClicked');
-    secondOp = this.textContent;
-    secondNumber = displayValue;
-    calcResult = operate(op, +firstNumber, +secondNumber);
-    displayValue = calcResult;
-    screen.textContent = displayValue;
-    firstNumber = displayValue;
+  if (this.textContent === 'C') {
+    op = '';
+    secondOp = '';
+    firstNumber = '';
+    secondNumber = '';
     calcResult = '';
-  } else if ((this.textContent !== '=') && (op !== '' && secondOp !== '')) {
-    this.classList.add('operatorClicked');
-    secondNumber = displayValue;
-    calcResult = operate(secondOp, +firstNumber, +secondNumber);
-    secondOp = this.textContent;
-    displayValue = calcResult;
+    displayValue = '';
     screen.textContent = displayValue;
-    firstNumber = displayValue;
-    calcResult = '';
-  } else if (this.textContent !== '=') {
-    op = this.textContent;
-    this.classList.add('operatorClicked');
   } else {
-    if (op === '') {
+    if ((this.textContent !== '=') && (op !== '' && secondOp === '')) {
+      this.classList.add('operatorClicked');
+      secondOp = this.textContent;
+      secondNumber = displayValue;
+      calcResult = operate(op, +firstNumber, +secondNumber);
+      displayValue = calcResult;
       screen.textContent = displayValue;
-    } else if (secondOp !== '') {
+      firstNumber = displayValue;
+      calcResult = '';
+    } else if ((this.textContent !== '=') && (op !== '' && secondOp !== '')) {
+      this.classList.add('operatorClicked');
       secondNumber = displayValue;
-      calcResult = operate(op, +firstNumber, +secondNumber);
-      if (calcResult === "we don't do that here") {
-        displayValue = "we don't do that here";
-        screen.textContent = displayValue;
-      } else {
-        displayValue = calcResult;
-        screen.textContent = displayValue;
-        firstNumber = displayValue;
-        secondNumber = '';
-        op = '';
-        secondOp = '';
-        calcResult = '';
-      }
+      calcResult = operate(secondOp, +firstNumber, +secondNumber);
+      secondOp = this.textContent;
+      displayValue = calcResult;
+      screen.textContent = displayValue;
+      firstNumber = displayValue;
+      calcResult = '';
+    } else if (this.textContent !== '=') {
+      op = this.textContent;
+      this.classList.add('operatorClicked');
     } else {
-      secondNumber = displayValue;
-      calcResult = operate(op, +firstNumber, +secondNumber);
-      if (calcResult === "we don't do that here") {
-        displayValue = "we don't do that here";
-        screen.textContent = "we don't do that here";
-      } else {
-        displayValue = calcResult;
+      if (op === '') {
         screen.textContent = displayValue;
-        firstNumber = displayValue;
-        secondNumber = '';
-        op = '';
-        secondOp = '';
-        calcResult = '';
+      } else if (secondOp !== '') {
+        secondNumber = displayValue;
+        calcResult = operate(op, +firstNumber, +secondNumber);
+        if (calcResult === "we don't do that here") {
+          displayValue = "we don't do that here";
+          screen.textContent = displayValue;
+        } else {
+          displayValue = calcResult;
+          screen.textContent = displayValue;
+          firstNumber = displayValue;
+          secondNumber = '';
+          op = '';
+          secondOp = '';
+          calcResult = '';
+        }
+      } else {
+        secondNumber = displayValue;
+        calcResult = operate(op, +firstNumber, +secondNumber);
+        if (calcResult === "we don't do that here") {
+          displayValue = "we don't do that here";
+          screen.textContent = "we don't do that here";
+        } else {
+          displayValue = calcResult;
+          screen.textContent = displayValue;
+          firstNumber = displayValue;
+          secondNumber = '';
+          op = '';
+          secondOp = '';
+          calcResult = '';
+        }
       }
     }
   }
