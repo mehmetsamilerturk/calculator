@@ -160,8 +160,39 @@ let operatorEventHandler = function (e) {
     op = this.textContent;
     this.classList.add('operatorClicked');
   } else {
-    displayValue = operate(op, +firstNumber, +secondNumber);
-    screen.textContent = displayValue;
+    if (op === '') {
+      screen.textContent = displayValue;
+    } else if (secondOp !== '') {
+      secondNumber = displayValue;
+      calcResult = operate(op, +firstNumber, +secondNumber);
+      if (calcResult === "we don't do that here") {
+        displayValue = "we don't do that here";
+        screen.textContent = displayValue;
+      } else {
+        displayValue = calcResult;
+        screen.textContent = displayValue;
+        firstNumber = displayValue;
+        secondNumber = '';
+        op = '';
+        secondOp = '';
+        calcResult = '';
+      }
+    } else {
+      secondNumber = displayValue;
+      calcResult = operate(op, +firstNumber, +secondNumber);
+      if (calcResult === "we don't do that here") {
+        displayValue = "we don't do that here";
+        screen.textContent = "we don't do that here";
+      } else {
+        displayValue = calcResult;
+        screen.textContent = displayValue;
+        firstNumber = displayValue;
+        secondNumber = '';
+        op = '';
+        secondOp = '';
+        calcResult = '';
+      }
+    }
   }
 }
 
