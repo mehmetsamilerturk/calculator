@@ -1,3 +1,5 @@
+// Contains a bug where if second number equals to first number, you can't type more digits
+
 const buttonsContainer = document.querySelector('.buttonsContainer');
 const leftSide = document.querySelector('.leftSide');
 const rightSide = document.querySelector('.rightSide');
