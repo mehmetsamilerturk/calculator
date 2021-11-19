@@ -111,6 +111,10 @@ let displayValue = '';
 let secondOp = '';
 let calcResult = '';
 
+function roundAnswers(num) {
+  return +(Math.round(num + "e+8")  + "e-8");
+}
+
 let numberEventHandler = function (e) {
   operators.forEach((operator) => {
     if (operator.classList.contains('operatorClicked')) {
@@ -149,7 +153,7 @@ let operatorEventHandler = function (e) {
       secondOp = this.textContent;
       secondNumber = displayValue;
       calcResult = operate(op, +firstNumber, +secondNumber);
-      displayValue = calcResult;
+      displayValue = roundAnswers(calcResult);
       screen.textContent = displayValue;
       firstNumber = displayValue;
       calcResult = '';
@@ -158,7 +162,7 @@ let operatorEventHandler = function (e) {
       secondNumber = displayValue;
       calcResult = operate(secondOp, +firstNumber, +secondNumber);
       secondOp = this.textContent;
-      displayValue = calcResult;
+      displayValue = roundAnswers(calcResult);
       screen.textContent = displayValue;
       firstNumber = displayValue;
       calcResult = '';
@@ -175,7 +179,7 @@ let operatorEventHandler = function (e) {
           displayValue = "we don't do that here";
           screen.textContent = displayValue;
         } else {
-          displayValue = calcResult;
+          displayValue = roundAnswers(calcResult);
           screen.textContent = displayValue;
           firstNumber = displayValue;
           secondNumber = '';
@@ -190,7 +194,7 @@ let operatorEventHandler = function (e) {
           displayValue = "we don't do that here";
           screen.textContent = "we don't do that here";
         } else {
-          displayValue = calcResult;
+          displayValue = roundAnswers(calcResult);
           screen.textContent = displayValue;
           firstNumber = displayValue;
           secondNumber = '';
