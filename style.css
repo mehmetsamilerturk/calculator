@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   height: inherit;
-  width: 600px;
+  width: 500px;
   border: 2px solid green;
 }
 
@@ -51,6 +51,7 @@ body {
 
 .buttonsContainer .leftSide,
 .buttonsContainer .rightSide {
+  gap: 5px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -68,14 +69,22 @@ body {
   background-color: red;
 }
 
+.number {
+  background-color: blue;
+
+}
+
 .row {
   display: flex;
   flex: 1;
-  border: 2px solid blueviolet;
+  gap: 5px;
+}
+
+.rowLeft {
+  flex-direction: row-reverse;
 }
 
 .block {
-  border: 1px solid black;
   flex: 1;
   display: flex;
   align-items: center;
@@ -83,8 +92,16 @@ body {
   font-weight: bold;
   font-size: 30px;
   cursor: pointer;
+  border-radius: 15%;
 }
 
 .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: arial,sans-serif;
+  color: #70757a;
+  padding: 15px;
   border: 2px solid blue;
 }

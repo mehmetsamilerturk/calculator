@@ -1,4 +1,5 @@
 // Contains a bug where if second number equals to first number, you can't type more digits
+// Adding a positive number to a negative number gives unexpected results
 
 const buttonsContainer = document.querySelector('.buttonsContainer');
 const leftSide = document.querySelector('.leftSide');
@@ -45,6 +46,7 @@ function createRow() {
     const rowLeft = document.createElement('div');
     const rowRight = document.createElement('div');
     rowLeft.classList.add('row');
+    rowLeft.classList.add('rowLeft');
     rowRight.classList.add('row');
     leftSide.appendChild(rowLeft);
     rightSide.appendChild(rowRight);
@@ -92,10 +94,14 @@ function pushOperators() {
   blocks[14].textContent = 'C';
   blocks[16].textContent = '(';
   blocks[17].textContent = ')';
+  blocks[19].textContent = 'x²';
   blocks[20].textContent = '√';
 }
 
 pushOperators();
+
+blocks[22].remove();
+blocks[23].style.cssText = 'flex: 2.4;';
 
 const numbers = [blocks[0], blocks[1], blocks[2], blocks[3], blocks[4], blocks[5]
   , blocks[6]
@@ -114,7 +120,7 @@ let secondOp = '';
 let calcResult = '';
 
 function roundAnswers(num) {
-  return +(Math.round(num + "e+8")  + "e-8");
+  return +(Math.round(num + "e+8") + "e-8");
 }
 
 let numberEventHandler = function (e) {
