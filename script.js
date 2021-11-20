@@ -1,5 +1,4 @@
 // Contains a bug where if second number equals to first number, you can't type more digits
-// Adding a positive number to a negative number gives unexpected results
 
 const buttonsContainer = document.querySelector('.buttonsContainer');
 const leftSide = document.querySelector('.leftSide');
@@ -39,6 +38,10 @@ function operate(operator, x, y) {
     default:
       return 'invalid';
   }
+}
+
+function roundAnswers(num) {
+  return +(Math.round(num + "e+8") + "e-8");
 }
 
 function createRow() {
@@ -119,10 +122,6 @@ let displayValue = '';
 let secondOp = '';
 let calcResult = '';
 
-function roundAnswers(num) {
-  return +(Math.round(num + "e+8") + "e-8");
-}
-
 let numberEventHandler = function (e) {
   operators.forEach((operator) => {
     if (operator.classList.contains('operatorClicked')) {
@@ -155,6 +154,11 @@ let operatorEventHandler = function (e) {
     calcResult = '';
     displayValue = '';
     screen.textContent = displayValue;
+    operators.forEach((operator) => {
+      if (operator.classList.contains('operatorClicked')) {
+        operator.classList.remove('operatorClicked');
+      }
+    });
   } else {
     if ((this.textContent !== '=') && (op !== '' && secondOp === '')) {
       this.classList.add('operatorClicked');
@@ -182,7 +186,7 @@ let operatorEventHandler = function (e) {
         screen.textContent = displayValue;
       } else if (secondOp !== '') {
         secondNumber = displayValue;
-        calcResult = operate(op, +firstNumber, +secondNumber);
+        calcResult = operate(secondOp, +firstNumber, +secondNumber);
         if (calcResult === "we don't do that here") {
           displayValue = "we don't do that here";
           screen.textContent = displayValue;
