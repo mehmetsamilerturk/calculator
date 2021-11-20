@@ -1,5 +1,3 @@
-// Contains a bug where if second number equals to first number, you can't type more digits
-
 const buttonsContainer = document.querySelector('.buttonsContainer');
 const leftSide = document.querySelector('.leftSide');
 const rightSide = document.querySelector('.rightSide');
@@ -121,6 +119,7 @@ let secondNumber = '';
 let displayValue = '';
 let secondOp = '';
 let calcResult = '';
+let isFirstNumberStored = false;
 
 let numberEventHandler = function (e) {
   operators.forEach((operator) => {
@@ -134,9 +133,10 @@ let numberEventHandler = function (e) {
     firstNumber = displayValue;
     screen.textContent = displayValue;
   } else {
-    if (displayValue === firstNumber) {
+    if (isFirstNumberStored) {
       displayValue = this.textContent;
       screen.textContent = displayValue;
+      isFirstNumberStored = false;
     } else {
       displayValue += this.textContent;
       secondNumber = displayValue;
@@ -168,6 +168,7 @@ let operatorEventHandler = function (e) {
       displayValue = roundAnswers(calcResult);
       screen.textContent = displayValue;
       firstNumber = displayValue;
+      isFirstNumberStored = true;
       calcResult = '';
     } else if ((this.textContent !== '=') && (op !== '' && secondOp !== '')) {
       this.classList.add('operatorClicked');
@@ -177,9 +178,12 @@ let operatorEventHandler = function (e) {
       displayValue = roundAnswers(calcResult);
       screen.textContent = displayValue;
       firstNumber = displayValue;
+      isFirstNumberStored = true;
       calcResult = '';
     } else if (this.textContent !== '=') {
       op = this.textContent;
+      firstNumber = displayValue;
+      isFirstNumberStored = true;
       this.classList.add('operatorClicked');
     } else {
       if (op === '') {
