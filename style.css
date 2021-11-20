@@ -5,19 +5,29 @@ body {
   flex-direction: column;
 }
 
+a {
+  margin-left: 5px;
+  color: black;
+  text-decoration: none;
+}
+
 .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
-  text-align: center;
-  font-weight: bold;
-  font-size: 30px;
-  border: 2px solid black;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 400;
+  font-size: 50px;
+  background-color: #1a1c1b;
+  color: #cfcf6d;
 }
 
 .main {
   display: flex;
   justify-content: center;
   flex: 5;
-  border: 2px solid red;
+  background-color: #1a1c1b;
 }
 
 .container {
@@ -25,28 +35,27 @@ body {
   flex-direction: column;
   height: inherit;
   width: 500px;
-  border: 2px solid green;
+  margin-bottom: 10px;
+  border: 10px solid #b39c7e;
+  border-radius: 3%;
 }
 
 .container .screen {
+  background-color: #9fa91f;
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-weight: 950;
-  font-size: 50px;
-  border: 2px solid orangered;
-}
-
-.container .input {
-  height: 50px;
-  border: 2px solid red;
+  font-weight: 900;
+  font-size: 80px;
+  border: 5px solid black;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .buttonsContainer {
   display: flex;
   flex: 1;
-  border: 2px solid black;
+  gap: 5px;
 }
 
 .buttonsContainer .leftSide,
@@ -57,21 +66,25 @@ body {
   flex: 1;
 }
 
-.buttonsContainer .leftSide {
-  border: 2px solid black;
+.block.operand {
+  background-color: #90989a;
+  color: black;
 }
 
-.buttonsContainer .rightSide {
-  border: 2px solid blue;
+.operator {
+  background-color: #68574d;
+}
+
+.block.operand:hover {
+  background-color: #263e44;
+}
+
+.block.operand:active {
+  background-color: #263e44;
 }
 
 .operatorClicked {
-  background-color: red;
-}
-
-.number {
-  background-color: blue;
-
+  background-color: #dba281;
 }
 
 .row {
@@ -89,10 +102,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 40px;
+  color: white;
   cursor: pointer;
+  border: none;
   border-radius: 15%;
+}
+
+.block:active {
+  transform: scale(0.9);
 }
 
 .footer {
@@ -100,8 +120,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   color: #70757a;
   padding: 15px;
-  border: 2px solid blue;
 }

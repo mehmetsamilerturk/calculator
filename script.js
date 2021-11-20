@@ -39,7 +39,7 @@ function operate(operator, x, y) {
 }
 
 function roundAnswers(num) {
-  return +(Math.round(num + "e+8") + "e-8");
+  return +(Math.round(num + "e+5") + "e-5");
 }
 
 function createRow() {
@@ -70,7 +70,6 @@ function pushBlocks() {
 pushBlocks();
 const blocks = document.querySelectorAll('.block');
 
-console.log(blocks);
 function pushNumbers() {
   let j = 9;
   for (let i = 0; i < 9; i++) {
@@ -102,7 +101,16 @@ function pushOperators() {
 pushOperators();
 
 blocks[22].remove();
-blocks[23].style.cssText = 'flex: 2.4;';
+blocks[23].style.cssText = 'flex: 2.4; background-color: #f7e61b; color: black; font-size: 60px;';
+
+blocks[14].style.backgroundColor = '#4e2f42';
+blocks[13].style.backgroundColor = '#4e2f42';
+blocks[9].style.backgroundColor = '#525758';
+blocks[11].style.backgroundColor = '#525758';
+blocks[16].style.backgroundColor = '#3a3a3a';
+blocks[17].style.backgroundColor = '#3a3a3a';
+blocks[19].style.backgroundColor = '#3a3a3a';
+blocks[20].style.backgroundColor = '#3a3a3a';
 
 const numbers = [blocks[0], blocks[1], blocks[2], blocks[3], blocks[4], blocks[5]
   , blocks[6]
@@ -154,6 +162,7 @@ let operatorEventHandler = function (e) {
     calcResult = '';
     displayValue = '';
     screen.textContent = displayValue;
+    isFirstNumberStored = false;
     operators.forEach((operator) => {
       if (operator.classList.contains('operatorClicked')) {
         operator.classList.remove('operatorClicked');
