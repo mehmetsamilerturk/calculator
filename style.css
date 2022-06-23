@@ -45,12 +45,12 @@ a {
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  direction: rtl;
   font-weight: 900;
   font-size: 80px;
   border: 5px solid black;
   font-family: 'Quattrocento Sans', sans-serif;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .buttonsContainer {
